@@ -3,7 +3,7 @@ A series of docker commands I find useful.
 ---
 Primarily for personal use. 
 
-*Latest Plex Server:*
+***Latest Plex Server:***
 ```
 docker run \
 -d \
