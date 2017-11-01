@@ -8,7 +8,7 @@ Primarily for personal use.
 docker run \
 -d \
 --name plex \
--p 80:32400 \
+-p 32400:32400 \
 -p 3005:3005 \
 -p 8324:8324 \
 -p 32469:32469 \
