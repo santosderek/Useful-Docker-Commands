@@ -22,7 +22,7 @@ docker run \
 -v /hdd2/plex/plex_config/config:/config \
 -v /hdd2/plex/plex_config/transcode/:/transcode \
 -v /hdd2/plex/data:/data/hdd2 \
--v /media/four_1/plex_storage:/data/four_tb_one \
+-v /media/four_2/plex_storage:/data/four_tb_2 \
 --restart always \
 plexinc/pms-docker
 ```
