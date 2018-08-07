@@ -51,3 +51,28 @@ docker run -d --name smb \
   --restart=always \
   joebiellik/samba-server
 ```
+
+***Start Steam Cache DNS Server***
+```
+docker run -d \
+    --name steamcache-dns \
+    -p 192.168.77.15:53:53/udp \
+    -e STEAMCACHE_IP=192.168.77.15 \
+    -e UPSTREAM_DNS=8.8.8.8 \
+    steamcache/steamcache-dns:latest
+```
+
+***Start Steam Cache***
+```
+docker run -d \
+--restart unless-stopped \
+--name steamcache \
+-it \
+-p 192.168.77.15:80:80 \
+-v /totalraidz/steamcache/data:/data/cache \
+-v /totalraidz/steamcache/logs:/data/logs \
+steamcache/steamcache:latest
+
+docker exec -it steamcache chown -R nginx:nginx /data/
+
+```
