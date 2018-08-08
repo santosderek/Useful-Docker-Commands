@@ -55,6 +55,7 @@ docker run -d --name smb \
 ***Start Steam Cache DNS Server***
 ```
 docker run -d \
+    --restart always \
     --name steamcache-dns \
     -p 192.168.77.15:53:53/udp \
     -e STEAMCACHE_IP=192.168.77.15 \
