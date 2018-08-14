@@ -19,10 +19,9 @@ docker run \
 -p 32414:32414 \
 -e TZ="EST" \
 -e PLEX_CLAIM="<claim token>" \
--v /hdd2/plex/plex_config/config:/config \
--v /hdd2/plex/plex_config/transcode/:/transcode \
--v /hdd2/plex/data:/data/hdd2 \
--v /media/four_2/plex_storage:/data/four_tb_2 \
+-v /totalraidz/plex/config:/config \
+-v /totalraidz/plex/transcode:/transcode \
+-v /totalraidz/plex/media:/data/ \
 --restart always \
 plexinc/pms-docker
 ```
