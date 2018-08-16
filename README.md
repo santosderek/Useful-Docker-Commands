@@ -46,6 +46,7 @@ docker run \
 -p 32413:32413 \
 -p 32414:32414 \
 -e TZ="EST" \
+-e PLEX_CLAIM="<claim token>" \
 --device=/dev/dri/card0:/dev/dri/card0 \
 --device /dev/dri/renderD128:/dev/dri/renderD128 \
 -v /totalraidz/plex/config:/config \
