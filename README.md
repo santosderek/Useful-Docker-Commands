@@ -26,6 +26,36 @@ docker run \
 plexinc/pms-docker
 ```
 
+***Latest Plex Server w/ Hardware Encoding:***
+
+*Change your device settings to your own hardware*
+
+*Does not work on AMD graphics cards* 
+
+```
+docker run \
+-d \
+--name plex \
+-p 32400:32400 \
+-p 3005:3005 \
+-p 8324:8324 \
+-p 32469:32469 \
+-p 1900:1900 \
+-p 32410:32410 \
+-p 32412:32412 \
+-p 32413:32413 \
+-p 32414:32414 \
+-e TZ="EST" \
+--device=/dev/dri/card0:/dev/dri/card0 \
+--device /dev/dri/renderD128:/dev/dri/renderD128 \
+-v /totalraidz/plex/config:/config \
+-v /totalraidz/plex/transcode:/transcode \
+-v /totalraidz/plex/media:/data/ \
+--restart always \
+plexinc/pms-docker
+```
+
+
 ***Quick FTP Server***
 ```
 docker run -d -v </path/to/dir>:/home/vsftpd \
