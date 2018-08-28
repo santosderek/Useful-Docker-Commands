@@ -96,13 +96,13 @@ docker run -d \
 ***Start Steam Cache***
 ```
 docker run -d \
---restart unless-stopped \
---name steamcache \
--it \
--p 192.168.77.15:80:80 \
--v /totalraidz/steamcache/data:/data/cache \
--v /totalraidz/steamcache/logs:/data/logs \
-steamcache/steamcache:latest
+  --restart always \
+  --name steamcache \
+  -it \
+  -p 192.168.75.15:80:80 \
+  -v /StorageDrives/steamcache/data:/data/cache \
+  -v /StorageDrives/steamcache/logs:/data/logs \
+  steamcache/steamcache:latest
 
 docker exec -it steamcache chown -R nginx:nginx /data/
 
