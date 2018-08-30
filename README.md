@@ -19,9 +19,9 @@ docker run \
 -p 32414:32414 \
 -e TZ="EST" \
 -e PLEX_CLAIM="<claim token>" \
--v /totalraidz/plex/config:/config \
--v /totalraidz/plex/transcode:/transcode \
--v /totalraidz/plex/media:/data/ \
+-v /StorageDrives/plex/config:/config \
+-v /StorageDrives/plex/transcode:/transcode \
+-v /StorageDrives/plex/media:/data/ \
 --restart always \
 plexinc/pms-docker
 ```
@@ -49,13 +49,12 @@ docker run \
 -e PLEX_CLAIM="<claim token>" \
 --device=/dev/dri/card0:/dev/dri/card0 \
 --device /dev/dri/renderD128:/dev/dri/renderD128 \
--v /totalraidz/plex/config:/config \
--v /totalraidz/plex/transcode:/transcode \
--v /totalraidz/plex/media:/data/ \
+-v /StorageDrives/plex/config:/config \
+-v /StorageDrives/plex/transcode:/transcode \
+-v /StorageDrives/plex/media:/data/ \
 --restart always \
 plexinc/pms-docker
 ```
-
 
 ***Quick FTP Server***
 ```
