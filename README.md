@@ -23,7 +23,7 @@ docker run \
 -v /StorageDrives/plex/transcode:/transcode \
 -v /StorageDrives/plex/media:/data/ \
 --restart always \
-plexinc/pms-docker
+plexinc/pms-docker:plexpass
 ```
 
 ***Latest Plex Server w/ Hardware Encoding:***
@@ -36,24 +36,19 @@ plexinc/pms-docker
 docker run \
 -d \
 --name plex \
--p 32400:32400 \
--p 3005:3005 \
--p 8324:8324 \
--p 32469:32469 \
--p 1900:1900 \
--p 32410:32410 \
--p 32412:32412 \
--p 32413:32413 \
--p 32414:32414 \
+--network host \
 -e TZ="EST" \
--e PLEX_CLAIM="<claim token>" \
 --device=/dev/dri/card0:/dev/dri/card0 \
---device /dev/dri/renderD128:/dev/dri/renderD128 \
+--device=/dev/dri/renderD128:/dev/dri/renderD128 \
+--device=/dev/nvidia0:/dev/nvidia0 \
+--device=/dev/nvidiactl:/dev/nvidiactl \
+--device="/dev/nvidia-modeset":"/dev/nvidia-modeset" \
+--device="/dev/nvidia-uvm":"/dev/nvidia-uvm" \
 -v /StorageDrives/plex/config:/config \
 -v /StorageDrives/plex/transcode:/transcode \
 -v /StorageDrives/plex/media:/data/ \
 --restart always \
-plexinc/pms-docker
+"plexinc/pms-docker:plexpass"
 ```
 
 ***Quick FTP Server***
