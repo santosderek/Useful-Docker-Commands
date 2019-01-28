@@ -78,26 +78,30 @@ docker run -d --name smb \
 
 ***Start Steam Cache DNS Server***
 ```
-docker run -d \
-    --restart always \
-    --name steamcache-dns \
-    -p 192.168.77.15:53:53/udp \
-    -e STEAMCACHE_IP=192.168.77.15 \
-    -e UPSTREAM_DNS=8.8.8.8 \
+docker run --name steamcache-dns \
+    --restart unless-stopped \
+    -p 192.168.75.15:53:53/udp \
+    -e USE_GENERIC_CACHE=true \
+    -e LANCACHE_IP=192.168.75.15 \
+    -e UPSTREAM_DNS=192.168.75.1 \
+    -d \
     steamcache/steamcache-dns:latest
 ```
 
 ***Start Steam Cache***
 ```
-docker run -d \
-  --restart always \
+docker run \
+  --restart unless-stopped \
   --name steamcache \
-  -it \
   -p 192.168.75.15:80:80 \
-  -v /StorageDrives/steamcache/data:/data/cache \
+  -v /StorageDrives/steamcache/cache:/data/cache \
   -v /StorageDrives/steamcache/logs:/data/logs \
+  -d \
   steamcache/steamcache:latest
 
 docker exec -it steamcache chown -R nginx:nginx /data/
+
+# ***Needs steamcache/sniproxy if images not loading***
+docker run --restart unless-stopped -it -d -p 443:443 steamcache/sniproxy
 
 ```
