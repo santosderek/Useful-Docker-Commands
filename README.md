@@ -61,20 +61,6 @@ docker run -d -v </path/to/dir>:/home/vsftpd \
                 --name ftp \
                 --restart=always bogem/ftp
 ```
-***Quick SMB***
-```
-docker run -d --name smb \
-  -p 137:137/udp \
-  -p 138:138/udp \
-  -p 139:139/tcp \
-  -p 445:445/tcp \
-  -v /home/derek/smb/smb.conf:/etc/samba/smb.conf \
-  -v /path/to/folder:/mnt/folder/here \
-  -e USERNAME=USERNAME \
-  -e PASSWORD=PASSWORD \
-  --restart=always \
-  joebiellik/samba-server
-```
 
 ***Start Steam Cache DNS Server***
 ```
