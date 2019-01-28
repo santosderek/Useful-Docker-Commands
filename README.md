@@ -88,6 +88,5 @@ docker run \
 docker exec -it steamcache chown -R nginx:nginx /data/
 
 # ***Needs steamcache/sniproxy if images not loading***
-docker run --restart unless-stopped -it -d -p 443:443 steamcache/sniproxy
-
+docker run --name steamcache-sni --restart unless-stopped -it -d -p 192.168.75.15:443:443 steamcache/sniproxy
 ```
