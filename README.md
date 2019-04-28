@@ -62,10 +62,6 @@ docker run -d -v </path/to/dir>:/home/vsftpd \
                 --restart=always bogem/ftp
 ```
 
-***Start Steam Cache DNS Server***
-```
-
-```
 
 ***Start Steam Cache***
 ```
