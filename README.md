@@ -64,14 +64,7 @@ docker run -d -v </path/to/dir>:/home/vsftpd \
 
 ***Start Steam Cache DNS Server***
 ```
-docker run --name steamcache-dns \
-    --restart unless-stopped \
-    -p 192.168.75.15:53:53/udp \
-    -e USE_GENERIC_CACHE=true \
-    -e LANCACHE_IP=192.168.75.15 \
-    -e UPSTREAM_DNS=192.168.75.1 \
-    -d \
-    steamcache/steamcache-dns:latest
+
 ```
 
 ***Start Steam Cache***
@@ -86,8 +79,18 @@ docker run \
   -e CACHE_MEM_SIZE=6000m \
   -e CACHE_DISK_SIZE=2000g \
   steamcache/monolithic:latest
+  
+docker run --name steamcache-dns \
+    --restart unless-stopped \
+    -p 192.168.75.15:53:53/udp \
+    -e USE_GENERIC_CACHE=true \
+    -e LANCACHE_IP=192.168.75.15 \
+    -e UPSTREAM_DNS=192.168.75.1 \
+    -d \
+    steamcache/steamcache-dns:latest
 
-docker exec -it steamcache chown -R nginx:nginx /data/
+# Don't need this anymore (keeping just in case)
+#docker exec -it steamcache chown -R nginx:nginx /data/
 
 # ***Needs steamcache/sniproxy if images not loading***
 docker run --name steamcache-sni --restart unless-stopped -it -d -p 192.168.75.15:443:443 steamcache/sniproxy
