@@ -51,17 +51,6 @@ docker run \
 "plexinc/pms-docker:plexpass"
 ```
 
-***Quick FTP Server***
-```
-docker run -d -v </path/to/dir>:/home/vsftpd \
-                -p 20:20 -p 21:21 -p 47400-47470:47400-47470 \
-                -e FTP_USER=<USERNAME> \
-                -e FTP_PASS=<PASS> \
-                -e PASV_ADDRESS=<IP_ADDRESS> \
-                --name ftp \
-                --restart=always bogem/ftp
-```
-
 
 ***Start Steam Cache***
 ```
