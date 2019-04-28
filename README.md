@@ -83,7 +83,9 @@ docker run \
   -v /StorageDrives/steamcache/cache:/data/cache \
   -v /StorageDrives/steamcache/logs:/data/logs \
   -d \
-  steamcache/steamcache:latest
+  -e CACHE_MEM_SIZE=6000m \
+  -e CACHE_DISK_SIZE=2000g \
+  steamcache/monolithic:latest
 
 docker exec -it steamcache chown -R nginx:nginx /data/
 
