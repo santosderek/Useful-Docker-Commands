@@ -55,24 +55,25 @@ docker run \
 ***Start Steam Cache***
 ```
 docker run \
-  --restart unless-stopped \
+  --restart always \
   --name steamcache \
-  -p 192.168.75.15:80:80 \
-  -v /StorageDrives/steamcache/cache:/data/cache \
-  -v /StorageDrives/steamcache/logs:/data/logs \
+  -p 192.168.78.95:80:80 \
+  -p 192.168.78.95:443:443 \
+  -v /steamcache/cache:/data/cache \
+  -v /steamcache/logs:/data/logs \
   -d \
-  -e CACHE_MEM_SIZE=6000m \
-  -e CACHE_DISK_SIZE=2000g \
+  -e CACHE_MEM_SIZE=4000m \
+  -e CACHE_DISK_SIZE=3000g \
   steamcache/monolithic:latest
-  
+
 docker run --name steamcache-dns \
-    --restart unless-stopped \
-    -p 192.168.75.15:53:53/udp \
-    -e USE_GENERIC_CACHE=true \
-    -e LANCACHE_IP=192.168.75.15 \
-    -e UPSTREAM_DNS=192.168.75.1 \
-    -d \
-    steamcache/steamcache-dns:latest
+  --restart always \
+  -p 192.168.78.95:53:53/udp \
+  -e USE_GENERIC_CACHE=true \
+  -e LANCACHE_IP=192.168.78.95 \
+  -e UPSTREAM_DNS=192.168.78.1 \
+  -d \
+  steamcache/steamcache-dns:latest
 
 # Don't need this anymore (keeping just in case)
 #docker exec -it steamcache chown -R nginx:nginx /data/
